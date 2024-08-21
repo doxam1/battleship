@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const {Ship} = require('./Ship')
+import Ship from './Shipgit'
 
 describe("new ship", () => {
   const newShip = new Ship(1);
