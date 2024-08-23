@@ -1,7 +1,7 @@
 export default class Ship {
-    constructor(length, direction) {
+    constructor(length) {
         this.length = length;
-        this.direction = direction;
+        this.direction = ['horizontal', 'vertical'][Math.floor(Math.random() * 2)];
         this.hits = 0;
         this.sunk = false;        
     }
