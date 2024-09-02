@@ -22,10 +22,10 @@ export default class Player {
     const squareInBoard = document.querySelectorAll(`${boardClass}.square`); // change this to the type of player maybe?
 
     squareInBoard.forEach((square) => {
-      square.style.backgroundColor = "";
+      square.style.backgroundColor = "lightgray";
       for (let c = 0; c <= shipsDraw.length; c++) {
         if (square.classList.contains(shipsDraw[c])) {
-          square.style.backgroundColor = "blue";
+            this.type == 'real' ? square.style.backgroundColor = "blue" : square.style.backgroundColor = 'lightgray'
         }
       }
 

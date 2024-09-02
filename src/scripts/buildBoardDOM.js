@@ -18,6 +18,7 @@ export default function buildBoard(squareXsqaure, boardClass) {
     square.classList.add('square', `${boardClass}`, `${cellNum.toString().split('').join(':')}`);
     square.style.width = (400 / squareXsqaure) + 'px';
     square.style.height = (400 / squareXsqaure) + 'px';
+    square.style.backgroundColor = 'lightgray'
     board.appendChild(square);
   }
 }
