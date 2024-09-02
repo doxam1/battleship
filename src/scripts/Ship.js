@@ -4,7 +4,8 @@ export default class Ship {
         this.direction = '' //['horizontal', 'vertical'][Math.floor(Math.random() * 2)];
         this.hits = 0;
         this.sunk = false;
-        this.cordinates = [];        
+        this.cordinates = [];
+        this.clicked = [];     
     }
 
     hit() {
@@ -12,7 +13,7 @@ export default class Ship {
     }
 
     isSunk() {
-        this.hits == this.length ? this.sunk = true : false;
+        return this.hits == this.length ? this.sunk = true : false;
     }
 }
 

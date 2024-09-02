@@ -1,9 +1,8 @@
 import Ship from "./Ship";
 
 export default class Gameboard {
-  constructor(playerName) {
+  constructor() {
     this.board = Gameboard.newGameBoard();
-    this.playerName = playerName;
     this.ships = [
       new Ship(1),
       new Ship(1),
@@ -16,6 +15,8 @@ export default class Gameboard {
       new Ship(3),
       new Ship(4),
     ];
+    this.clickedNoShip = [];
+    this.sunkShips = [];
   }
 
   static newGameBoard() {
@@ -28,6 +29,10 @@ export default class Gameboard {
       gameBoard.push(rowInGameBoard);
     }
     return gameBoard;
+  }
+
+  isAllShipsSunk() {
+    return this.sunkShips.length == this.ships.length;
   }
 
   placeShip() {
@@ -71,7 +76,9 @@ export default class Gameboard {
           if (canPlace) {
             for (let z = 0; z < this.ships[i].length; z++) {
               this.board[xRowRandomNum + z][yCoulmnRandomNum] = 1;
-              this.ships[i].cordinates.push(`${xRowRandomNum + z}:${yCoulmnRandomNum}`)
+              this.ships[i].cordinates.push(
+                `${xRowRandomNum + z}:${yCoulmnRandomNum}`
+              );
             }
             placed = true;
           }
@@ -98,7 +105,9 @@ export default class Gameboard {
           if (canPlace) {
             for (let z = 0; z < this.ships[i].length; z++) {
               this.board[xRowRandomNum][yCoulmnRandomNum + z] = 1;
-              this.ships[i].cordinates.push(`${xRowRandomNum}:${yCoulmnRandomNum + z}`)
+              this.ships[i].cordinates.push(
+                `${xRowRandomNum}:${yCoulmnRandomNum + z}`
+              );
             }
             placed = true;
           }
@@ -117,13 +126,38 @@ export default class Gameboard {
       }
     }
   }
-  receiveAttack (x, y) {
-    if (this.board[x][y] == 1) {
-      this.board[x][y] = 2;
-    } 
+  receiveAttack(cordinate, event) {
+    if (this.isAllShipsSunk()) return;
+    this.ships.forEach((ship) => {
+      if (ship.clicked.includes(cordinate)) return;
+      if (ship.cordinates.includes(cordinate)) {
+        ship.hit();
+        ship.clicked.push(cordinate);
+        this.board[cordinate.slice(0, 1)][cordinate.slice(2)] = 2;
+        ship.isSunk();
+        event.style.backgroundColor = "gray";
+
+        if (ship.sunk == true) {
+          for (let i = 0; i < ship.cordinates.length; i++) {
+            for (let n = 0; n < event.parentNode.children.length; n++) {
+              if (
+                event.parentNode.children[n].classList.contains(
+                  ship.cordinates[i]
+                )
+              ) {
+                event.parentNode.children[n].style.backgroundColor = "orange"; // ornage means all ship sunk
+              }
+            }
+          }
+          this.sunkShips.push(ship);
+        }
+      } else if (!this.clickedNoShip.includes(cordinate)) {
+        this.clickedNoShip.push(cordinate);
+        event.style.backgroundColor = "red"; // no ship in square means red.
+      } else return;
+    });
   }
 }
-
 
 ///////////////////////////////////////////////////////
 

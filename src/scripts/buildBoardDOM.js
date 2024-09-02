@@ -22,4 +22,4 @@ export default function buildBoard(squareXsqaure, boardClass) {
   }
 }
 
-//i.toString().split('').join(':')
+// i will take the array from Gameboard class and connect it to the class of the cell and that's how i will populate the board.

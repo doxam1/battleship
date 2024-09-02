@@ -42,7 +42,7 @@ describe('buildBoard', () => {
     expect(mockBoardElement.appendChild).toHaveBeenCalledTimes(100); // 10x10 grid
 
     const firstCall = mockBoardElement.appendChild.mock.calls[0][0]; // First appended square
-    expect(firstCall.classList.add).toHaveBeenCalledWith('square', 'testBoardClass');
+    expect(firstCall.classList.add).toHaveBeenCalledWith('square', 'testBoardClass', '0:0');
     expect(firstCall.style.width).toBe('40px');
     expect(firstCall.style.height).toBe('40px');
   });
