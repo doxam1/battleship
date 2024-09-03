@@ -90,6 +90,8 @@ body {
 
   & .boardOne,
   .boardTwo {
+    // cursor: not-allowed; add to the disabled class.
+    // pointer-events: none;
     display: flex;
     flex-flow: wrap;
     width: 400px;

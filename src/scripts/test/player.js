@@ -1,9 +1,9 @@
 import Gameboard from "../gameboard";
-import buildBoard from "../buildBoardDOM";
 
 export default class Player {
-  constructor(type) {
+  constructor(type, name) {
     this.type = type;
+    this.name = name;
     this.gameBoard = new Gameboard();
   }
 
@@ -19,24 +19,24 @@ export default class Player {
       }
     }
 
-    const squareInBoard = document.querySelectorAll(`${boardClass}.square`); // change this to the type of player maybe?
+    const squareInBoard = document.querySelectorAll(`${boardClass}.square`);
 
     squareInBoard.forEach((square) => {
       square.style.backgroundColor = "lightgray";
       for (let c = 0; c <= shipsDraw.length; c++) {
         if (square.classList.contains(shipsDraw[c])) {
-            this.type == 'real' ? square.style.backgroundColor = "blue" : square.style.backgroundColor = 'lightgray'
+          this.type == "real"
+            ? (square.style.backgroundColor = "blue")
+            : (square.style.backgroundColor = "lightgray");
         }
       }
 
       // that's fn for playing with click on board square - new module.
-      square.onclick = (e) => {
-        this.gameBoard.receiveAttack(e.target.classList[2], e.target);
-      };
+      // square.onclick = (e) => {
+      //   this.gameBoard.receiveAttack(e.target.classList[2], e.target); /// only needed on attacking function.
+      // };
     });
   }
 }
-
-// machine ships needs to be hidden.
 
 // add points? name? way of placing ships? if comp - attack close squre after hit?

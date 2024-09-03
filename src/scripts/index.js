@@ -3,6 +3,7 @@ import "../styles/style.css";
 // import Gameboard from "./gameboard";
 import buildBoard from "./buildBoardDOM";
 import Player from "./test/player";
+import Game from "./game";
 
 
 buildBoard(10, "boardOne");
@@ -11,13 +12,11 @@ buildBoard(10, "boardTwo");
 const humanVsHumanNewGameBtn = document.querySelector('.humanVsHumanNewGameBtn');
 
 humanVsHumanNewGameBtn.addEventListener('click' , ()=>{
-  const playerOne = new Player('real');
-  console.log(playerOne)
-  playerOne.gameBoard.placeShip();
-  const machinePlayer = new Player('machine');
-  machinePlayer.gameBoard.placeShip();
-  playerOne.playerTypeBoardBuilding();
-  machinePlayer.playerTypeBoardBuilding();
+  const playerOne = new Player('real', 'daniel');
+  const machinePlayer = new Player('machine', 'Machina');
+  const game = new Game(playerOne, machinePlayer);
+  game.startGame();
+  game.playGame();
   newGameDialog.close();
 })
 

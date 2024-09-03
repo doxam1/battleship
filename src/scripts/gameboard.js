@@ -17,6 +17,7 @@ export default class Gameboard {
     ];
     this.clickedNoShip = [];
     this.sunkShips = [];
+    this.clicked = [];
   }
 
   static newGameBoard() {
@@ -127,17 +128,27 @@ export default class Gameboard {
     }
   }
   receiveAttack(cordinate, event) {
+    if (this.clicked.includes(cordinate)) {
+      console.log("already clicked");
+      return false;
+    }
+
+    this.clicked.push(cordinate);
+
     if (this.isAllShipsSunk()) return;
+    if (this.clickedNoShip.includes(cordinate)) return;
+
+    let hit = false;
     this.ships.forEach((ship) => {
       if (ship.clicked.includes(cordinate)) return;
       if (ship.cordinates.includes(cordinate)) {
         ship.hit();
         ship.clicked.push(cordinate);
         this.board[cordinate.slice(0, 1)][cordinate.slice(2)] = 2;
-        ship.isSunk();
         event.style.backgroundColor = "gray";
+        hit = true;
 
-        if (ship.sunk == true) {
+        if (ship.isSunk()) {
           for (let i = 0; i < ship.cordinates.length; i++) {
             for (let n = 0; n < event.parentNode.children.length; n++) {
               if (
@@ -151,11 +162,12 @@ export default class Gameboard {
           }
           this.sunkShips.push(ship);
         }
-      } else if (!this.clickedNoShip.includes(cordinate)) {
+      } else if (!hit && !this.clickedNoShip.includes(cordinate)) {
         this.clickedNoShip.push(cordinate);
         event.style.backgroundColor = "red"; // no ship in square means red.
-      } else return;
+      }
     });
+    return true;
   }
 }
 
