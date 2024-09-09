@@ -26,7 +26,7 @@ export default class Player {
       for (let c = 0; c <= shipsDraw.length; c++) {
         if (square.classList.contains(shipsDraw[c])) {
           this.type == "real"
-            ? (square.style.backgroundColor = "blue")
+            ? (square.style.background = "white center/110% url('./image/noun-ship-4897095.svg')")
             : (square.style.backgroundColor = "lightgray");
         }
       }

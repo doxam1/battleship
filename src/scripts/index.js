@@ -9,6 +9,8 @@ import Game from "./game";
 buildBoard(10, "boardOne");
 buildBoard(10, "boardTwo");
 
+
+
 const humanVsHumanNewGameBtn = document.querySelector('.humanVsHumanNewGameBtn');
 
 humanVsHumanNewGameBtn.addEventListener('click' , ()=>{

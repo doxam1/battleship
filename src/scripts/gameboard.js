@@ -145,7 +145,7 @@ export default class Gameboard {
         ship.hit();
         ship.clicked.push(cordinate);
         this.board[cordinate.slice(0, 1)][cordinate.slice(2)] = 2;
-        event.style.backgroundColor = "gray";
+        event.style.background = "gray center/110% url('./image/noun-ship-4897095.svg')"
         hit = true;
 
         if (ship.isSunk()) {
@@ -164,7 +164,7 @@ export default class Gameboard {
         }
       } else if (!hit && !this.clickedNoShip.includes(cordinate)) {
         this.clickedNoShip.push(cordinate);
-        event.style.backgroundColor = "red"; // no ship in square means red.
+        event.style.backgroundColor = "red"; // red means no ship in square.
       }
     });
     return true;
