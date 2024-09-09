@@ -2,7 +2,7 @@ import "../styles/style.css";
 // import { Ship } from "./Ship";
 // import Gameboard from "./gameboard";
 import buildBoard from "./buildBoardDOM";
-import Player from "./test/player";
+import Player from "./player";
 import Game from "./game";
 
 
@@ -12,7 +12,7 @@ buildBoard(10, "boardTwo");
 const humanVsHumanNewGameBtn = document.querySelector('.humanVsHumanNewGameBtn');
 
 humanVsHumanNewGameBtn.addEventListener('click' , ()=>{
-  const playerOne = new Player('real', 'daniel');
+  const playerOne = new Player('real', 'Human');
   const machinePlayer = new Player('machine', 'Machina');
   const game = new Game(playerOne, machinePlayer);
   game.startGame();

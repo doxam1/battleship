@@ -40,6 +40,7 @@ export default class Game {
     const squareInBoard = document.querySelectorAll(`${boardClass}.square`);
 
     const handleClick = (e) => {
+      e.target.classList.add("clickedSquare");
       const validMove = opponent.gameBoard.receiveAttack(
         e.target.classList[2],
         e.target
@@ -64,5 +65,21 @@ export default class Game {
     squareInBoard.forEach((square) => {
       square.addEventListener("click", handleClick, { once: true });
     });
+
+    const boardOneSquares = document.querySelectorAll(".boardOne.square");
+
+    const machineClickRandom = () => {
+      let notClickedByMachine = Array.from(boardOneSquares).filter(
+        (x) => !x.classList.contains("clickedSquare")
+      );
+      let NextMachineClick = notClickedByMachine[Math.floor(Math.random() * notClickedByMachine.length)];
+
+      NextMachineClick.click(); 
+    };
+
+    if (currentPlayer.type == "machine")
+      setTimeout(() => {
+        machineClickRandom();
+      }, 500);
   }
 }
