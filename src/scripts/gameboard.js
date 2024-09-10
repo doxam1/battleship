@@ -128,7 +128,6 @@ export default class Gameboard {
     }
   }
   receiveAttack(cordinate, event) {
-    console.log(this.clicked)
     if (this.clicked.includes(cordinate)) {
       console.log("already clicked");
       return false;

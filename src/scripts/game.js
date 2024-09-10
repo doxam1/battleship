@@ -40,6 +40,13 @@ export default class Game {
     const squareInBoard = document.querySelectorAll(`${boardClass}.square`);
 
     const handleClick = (e) => {
+      const msgBoard = document.querySelector(".centerBoard");
+      if (opponent.type == "machine") {
+        msgBoard.textContent = `< ${opponent.name} Turn`;
+      } else {
+        msgBoard.textContent = `${opponent.name} Turn >`;
+      }
+
       e.target.classList.add("clickedSquare");
       const validMove = opponent.gameBoard.receiveAttack(
         e.target.classList[2],
@@ -49,7 +56,7 @@ export default class Game {
       if (validMove) {
         // const hit = currentPlayer.attack(opponent, cordinate, eventTarget);
         if (opponent.gameBoard.isAllShipsSunk()) {
-          console.log(`${currentPlayer.name} wins!`);
+          msgBoard.textContent = `${currentPlayer.name} wins!`;
           return;
         }
 
@@ -72,14 +79,17 @@ export default class Game {
       let notClickedByMachine = Array.from(boardOneSquares).filter(
         (x) => !x.classList.contains("clickedSquare")
       );
-      let NextMachineClick = notClickedByMachine[Math.floor(Math.random() * notClickedByMachine.length)];
+      let NextMachineClick =
+        notClickedByMachine[
+          Math.floor(Math.random() * notClickedByMachine.length)
+        ];
 
-      NextMachineClick.click(); 
+      NextMachineClick.click();
     };
 
     if (currentPlayer.type == "machine")
       setTimeout(() => {
         machineClickRandom();
-      }, 500);
+      }, 750);
   }
 }

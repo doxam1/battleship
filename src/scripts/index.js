@@ -22,11 +22,12 @@ humanVsHumanNewGameBtn.addEventListener('click' , ()=>{
     square.replaceWith(square.cloneNode(true));
   })
 
+  document.querySelector('.centerBoard').innerHTML = 'Human turn >';
+
 
   let playerOne = new Player('real', 'Human');
   let machinePlayer = new Player('machine', 'Machina');
   let game = new Game(playerOne, machinePlayer);
-  console.log(game)
   game.startGame();
   game.playGame();
   newGameDialog.close();

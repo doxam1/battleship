@@ -81,11 +81,11 @@ body {
   align-content: center;
 
   & .centerBoard {
-    border: 1px solid pink;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.2rem;
   }
 
   & .boardOne,
