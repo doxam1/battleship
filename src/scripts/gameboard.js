@@ -2,7 +2,7 @@ import Ship from "./Ship";
 
 export default class Gameboard {
   constructor() {
-    this.board = Gameboard.newGameBoard();
+    this.board = this.newGameBoard();
     this.ships = [
       new Ship(1),
       new Ship(1),
@@ -20,7 +20,7 @@ export default class Gameboard {
     this.clicked = [];
   }
 
-  static newGameBoard() {
+  newGameBoard() {
     let gameBoard = [];
     for (let i = 0; i < 10; i++) {
       let rowInGameBoard = [];
@@ -128,6 +128,7 @@ export default class Gameboard {
     }
   }
   receiveAttack(cordinate, event) {
+    console.log(this.clicked)
     if (this.clicked.includes(cordinate)) {
       console.log("already clicked");
       return false;

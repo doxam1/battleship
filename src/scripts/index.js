@@ -14,9 +14,19 @@ buildBoard(10, "boardTwo");
 const humanVsHumanNewGameBtn = document.querySelector('.humanVsHumanNewGameBtn');
 
 humanVsHumanNewGameBtn.addEventListener('click' , ()=>{
-  const playerOne = new Player('real', 'Human');
-  const machinePlayer = new Player('machine', 'Machina');
-  const game = new Game(playerOne, machinePlayer);
+
+  // every new game start fresh with the class names on square and the event listeners lingering on the dom.
+  const squareInBoard = document.querySelectorAll(`.square`);
+  squareInBoard.forEach((square) => {
+    square.classList.remove('clickedSquare');
+    square.replaceWith(square.cloneNode(true));
+  })
+
+
+  let playerOne = new Player('real', 'Human');
+  let machinePlayer = new Player('machine', 'Machina');
+  let game = new Game(playerOne, machinePlayer);
+  console.log(game)
   game.startGame();
   game.playGame();
   newGameDialog.close();

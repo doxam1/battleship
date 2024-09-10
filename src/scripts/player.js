@@ -12,7 +12,7 @@ export default class Player {
     this.type == "real"
       ? (boardClass = ".boardOne")
       : (boardClass = ".boardTwo");
-    let shipsDraw = [];
+    const shipsDraw = [];
     for (let x = 0; x < this.gameBoard.board.length; x++) {
       for (let y = 0; y < this.gameBoard.board[x].length; y++) {
         if (this.gameBoard.board[x][y] !== null) shipsDraw.push(`${x}:${y}`);
@@ -22,7 +22,7 @@ export default class Player {
     const squareInBoard = document.querySelectorAll(`${boardClass}.square`);
 
     squareInBoard.forEach((square) => {
-      square.style.backgroundColor = "lightgray";
+      square.style.background = "lightgray";
       for (let c = 0; c <= shipsDraw.length; c++) {
         if (square.classList.contains(shipsDraw[c])) {
           this.type == "real"
