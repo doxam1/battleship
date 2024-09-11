@@ -124,3 +124,38 @@ body {
     padding-left: 6rem;
   }
 }
+
+@media screen  and (max-width: 600px) {
+  body {
+    display:flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    overflow: auto;
+    // position: relative;
+
+    .footer {
+      display: none;
+      // position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    
+  }
+
+  .twoBoardsScreen {
+    display: flex;
+    flex-direction: column;
+
+    & .boardOne,
+  .boardTwo {
+    // cursor: not-allowed; add to the disabled class.
+    // pointer-events: none;
+    display: flex;
+    flex-flow: wrap;
+    width: 400px;
+    height: 400px;
+  }
+}
+
+  
+}

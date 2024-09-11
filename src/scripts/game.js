@@ -16,6 +16,7 @@ export default class Game {
     this.players.forEach((player) => {
       player.gameBoard.placeShip();
       player.playerTypeBoardBuilding();
+      player.gameBoard.hasShipCordinates();
     });
   }
 
@@ -76,6 +77,14 @@ export default class Game {
     const boardOneSquares = document.querySelectorAll(".boardOne.square");
 
     const machineClickRandom = () => {
+      //  // לשנות פה, לדחוף לרשימה את הלחיצה האחרונה ולבדוק אם יש ספינה, אם כן ללחוץ ליד
+      // const lastClickedByMachine = Array.from(boardOneSquares).filter((x) => x.classList.contains('clickedSquare'))
+      // console.log(lastClickedByMachine)
+
+      // אם זה אפשר לראות איפה יש ספינות, אם הייתה לחיצה על ספינה - הלחיצה הבאה תהיה בריבוע ליד.
+      // console.log(this.players[1].gameBoard.hasShipCordinatesArr);
+
+
       let notClickedByMachine = Array.from(boardOneSquares).filter(
         (x) => !x.classList.contains("clickedSquare")
       );

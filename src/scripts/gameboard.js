@@ -18,6 +18,15 @@ export default class Gameboard {
     this.clickedNoShip = [];
     this.sunkShips = [];
     this.clicked = [];
+    this.hasShipCordinatesArr = [];
+  }
+
+  hasShipCordinates () {
+    for (let i = 0 ; i < this.ships.length ; i++) {
+      for (let y = 0 ; y < this.ships[i].cordinates.length ; y++) {
+        this.hasShipCordinatesArr.push(this.ships[i].cordinates[y]);
+      }
+    }
   }
 
   newGameBoard() {
